@@ -1,4 +1,6 @@
 let videoElem = document.querySelector("video");
+let captureImaBtn = document.querySelector(".click-image");
+let filterColor = document.querySelectorAll(".filter>*");
 //let audioElem = document.querySelector("audio");
 
 //1.
@@ -64,7 +66,26 @@ recordBtn.addEventListener("click", function () {
         mediarecordingsObjectsForCurrStream.stop();
         recordBtn.innerText = "Record";
     }
-
     isRecording = !isRecording;
 })
 
+captureImaBtn.addEventListener("click",function(){
+    let canvas = document.createElement("canvas");
+    canvas.height = videoElem.videoHeight;
+    canvas.width = videoElem.videoWidth;
+    let tool = canvas.getContext("2d");
+    tool.drawImage(videoElem,0,0);
+    let url = canvas.toDataURL();
+    let a = document.createElement("a");
+    a.download = "file.png";
+    a.href = url;
+    a.click();
+    a.remove();
+})
+
+for (let i = 0; i < filterColor.length; i++) {
+    filterColor[i].addEventListener("click",function(){
+        let color = filterColor[i].getAttribute("color");
+        document.querySelector(".filter-screen").style.background = color;
+    });
+}

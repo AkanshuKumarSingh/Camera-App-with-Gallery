@@ -21,6 +21,25 @@ body{
     right: 26px;
     border-radius: 50%;
 }
-.click{
+.click-image{
     top: 45%;  
 }
+
+.filter-screen{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background: transparent;
+    top: 0px;
+}
+
+.filter{
+    position: absolute;
+    top: 30vh;
+    left: 10vw;
+}
+
+.color{
+    width: 12vw;
+    height: 10vh;
+} 
