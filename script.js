@@ -1,13 +1,13 @@
 let videoElem = document.querySelector("video");
-let captureImaBtn = document.querySelector(".click-image");
-let filterColor = document.querySelectorAll(".filter>*");
 //let audioElem = document.querySelector("audio");
 
 //1.
 let recordBtn = document.querySelector(".record");
-let pauseBtn = document.querySelector(".pause");
+let captureImaBtn = document.querySelector(".click-image");
+let filterArr = document.querySelectorAll(".filter");
+let filterOverlay = document.querySelector(".filter_overlay");
 let isRecording = false;
-let isPaused = false;
+let filterColor = "";
 
 //what we want have to do contraint of it
 let constraint = {
@@ -75,6 +75,10 @@ captureImaBtn.addEventListener("click",function(){
     canvas.width = videoElem.videoWidth;
     let tool = canvas.getContext("2d");
     tool.drawImage(videoElem,0,0);
+    if(filterColor){
+        tool.fillStyle = filterColor;
+        tool.fillRect(0,0,canvas.width,canvas.height);
+    }
     let url = canvas.toDataURL();
     let a = document.createElement("a");
     a.download = "file.png";
@@ -83,9 +87,9 @@ captureImaBtn.addEventListener("click",function(){
     a.remove();
 })
 
-for (let i = 0; i < filterColor.length; i++) {
-    filterColor[i].addEventListener("click",function(){
-        let color = filterColor[i].getAttribute("color");
-        document.querySelector(".filter-screen").style.background = color;
-    });
+for (let i = 0; i < filterArr.length; i++) {
+    filterArr[i].addEventListener("click", function () {
+        filterColor = filterArr[i].style.backgroundColor;
+        filterOverlay.style.backgroundColor = filterColor;
+    })
 }
