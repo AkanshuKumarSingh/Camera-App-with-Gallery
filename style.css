@@ -55,3 +55,12 @@ body{
     /* width of the background image */
     background-size: 100%;
 }
+
+.time{
+    min-width: 10rem;
+    height: 5rem;
+    background-color: blue;
+    position: absolute;
+    z-index: 5;
+    width : calc( (100vh - 17rem)/2 + 18rem);
+}
